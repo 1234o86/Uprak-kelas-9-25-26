@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Sehat & Bergizi</title>
+    <style>
+        /* CSS - Desain & Tata Letak */
+        :root {
+            --primary-green: #2ecc71;
+            --dark-green: #27ae60;
+            --light-bg: #f4f7f6;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .food-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .food-info {
+            padding: 20px;
+        }
+
+        .food-info h3 {
+            margin-top: 0;
+            color: var(--dark-green);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #333;
+            color: white;
+            margin-top: 50px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Menu Sehat & Bergizi Seimbang</h1>
+        <p>Pilihan nutrisi terbaik untuk tubuh yang lebih kuat</p>
+    </header>
+
+    <div class="container">
+        <div class="grid-container" id="food-list">
+            </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Panduan Makan Sehat - Hidup Sehat Mulai dari Piringmu</p>
+    </footer>
+
+    <script>
+        // JavaScript - Data dan Logika
+        const foods = [
+            {
+                name: "Nasi Putih",
+                img: "https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=500&q=60",
+                cat: "Karbohidrat",
+                desc: "Sumber energi utama tubuh. Mengandung glukosa untuk bahan bakar otak dan otot."
+            },
+            {
+                name: "Ayam Goreng",
+                img: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=500&q=60",
+                cat: "Protein Hewani",
+                desc: "Kaya protein untuk membangun dan memperbaiki jaringan tubuh. (Saran: Gunakan minyak zaitun/sedikit minyak)."
+            },
+            {
+                name: "Tempe Goreng",
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROiOscCJ_ULZK63OFos_-O-vxaNDCiviPOg_6Ry42hVHC9qaId64v_phlhE50oSzDpPLE3gTIEM9kunr8CIG2Q_78TIw-MmQbg-xyoiBWS&s=10",
+                cat: "Protein Nabati",
+                desc: "Mengandung protein nabati tinggi dan probiotik yang baik untuk pencernaan."
+            },
+            {
+                name: "Sayur Bayam",
+                img: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=500&q=60",
+                cat: "Sayuran",
+                desc: "Sumber Zat Besi dan Vitamin A. Sangat baik untuk mencegah anemia dan kesehatan mata."
+            },
+            {
+                name: "Jagung",
+                img: "https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=500&q=60",
+                cat: "Karbohidrat Kompleks",
+                desc: "Kaya serat untuk melancarkan pencernaan dan memberikan rasa kenyang lebih lama."
+            },
+            {
+                name: "Apel",
+                img: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=500&q=60",
+                cat: "Buah-buahan",
+                desc: "Mengandung Vitamin C dan antioksidan untuk meningkatkan daya tahan tubuh."
+            },
+            {
+                name: "Pepaya",
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxEI4GHwwMfGxsVDxULWfpV1j7Msppq8ChvCDYAtsCMt3pagVhdA9xAooJDrJj4qbLMB3N9mXnCFqNtEpitwgymLRDrpOOsetdLocWOc86&s=10",
+                cat: "Buah-buahan",
+                desc: "Mengandung enzim papain yang membantu proses pencernaan protein secara alami."
+            },
+            {
+                name: "Air Putih",
+                img: "data:image/jpeg;base64,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",
+                cat: "Hidrasi",
+                desc: "Sangat penting untuk metabolisme, menjaga suhu tubuh, dan membuang racun."
+            }
+        ];
+
+        const container = document.getElementById('food-list');
+
+        // Fungsi untuk menampilkan kartu makanan
+        foods.forEach(food => {
+            const card = `
+                <div class="food-card">
+                    <img src="${food.img}" alt="${food.name}">
+                    <div class="food-info">
+                        <span class="badge">${food.cat}</span>
+                        <h3>${food.name}</h3>
+                        <p>${food.desc}</p>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+    </script>
+</body>
+</html>
